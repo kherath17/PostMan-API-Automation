@@ -1,0 +1,13 @@
+[
+	{
+		"endpoint" : "api/register",
+		"email" : "Kasun",
+		"password" : "Herath"
+	},
+	
+	{
+		"endpoint" : "api/register",
+		"email" : "Kassa",
+		"password" : "Herath"
+	}
+]

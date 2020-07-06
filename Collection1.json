@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "e46c46fd-1709-4d59-b112-eaf7200393f5",
+		"name": "Collection1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3b1e19e-eb45-40a7-bda6-2afc9b0fcc40",
+								"exec": [
+									"console.log(\" Mayweather Promotions \")",
+									"let May = pm.variables.get(\"url\")",
+									"console.log(\"Value of Variable is : \"+ May)",
+									"pm.variables.set(\"name\",\"Floyd Mayweather\")",
+									"console.log(pm.variables.get(\"name\"))",
+									"",
+									"let May2 = pm.globals.get(\"Test\")",
+									"console.log(May2)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "89da4b14-3cd5-42e1-9caa-34f16bad13a0",
+								"exec": [
+									"console.log(\" Mayweather Promotions \")",
+									"let May = pm.variables.get(\"url\")",
+									"console.log(\"Value of Variable is : \"+ May)",
+									"pm.variables.set(\"name\",\"Floyd Mayweather\")",
+									"console.log(pm.variables.get(\"name\"))",
+									"",
+									"let May2 = pm.globals.get(\"Test\")",
+									"console.log(May2)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/users/2",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a1525dd-4d63-4ca1-83cb-1fa54013f954",
+								"exec": [
+									"pm.test(\"Verify Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"pm.test(\"Verify Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/users?page=2",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/{{endpoint}}",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"{{endpoint}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4ae635e4-4b5e-41be-9424-5ea819cbf01a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fb4adf96-95cc-4954-97db-a4de53dc6c23",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a1cc20f8-0879-4007-beb9-962a1ea1ef86",
+			"key": "url",
+			"value": "https://reqres.in/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

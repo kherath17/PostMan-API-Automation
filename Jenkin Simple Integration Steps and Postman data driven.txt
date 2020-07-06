@@ -1,0 +1,78 @@
+First Install jenkins
+then cd to jebkins installtion folder where jenkins.war file is present and run java -jar jenkins.war 
+Launch using localhost:8080
+Then create a user -> Manage jenkins -> Global security ->Security Realm -> Jenkins own database -> Save and go back to Manage Jenkins ->Manage Users -> Create User and save -> Go back to Global security -> Select matrix based and give all permissions and save -> Log out and log with created user
+Then select new item ->Enter Item name -> freestyle project ->Build -> Windows batch command(Give the npm path in environment variables in both system variables as well) -> enter the path of the api .json file directory -> npm run <filename>.json->Save -> Build 
+
+---------------
+CREATING VARIABLES
+can create variables at collection level , folder level, request level and also global level
+can assignn them to req or anywhere needed using {{variable}}
+Environment can be created and differen variables for specific encvironmnet can be created
+Scripts can be written at test tab 
+
+eg -
+console.log(" Mayweather Promotions ")
+
+let May = pm.variables.get("url")
+
+console.log("Value of Variable is : "+ May)
+
+pm.variables.set("name","Floyd Mayweather")
+
+console.log(pm.variables.get("name"))
+
+
+let May2 = pm.globals.get("Test")
+console.log(May2) 
+
+so here variables are assigned through the script itself
+NOTE-anything in TEST tab is executed after getting the reponse from the req while PREREQ TESTS Execute before sening the req
+
+--------------
+DATA DRIVEN REQUEST
+Create global variables as you wish assign them to req url and body as needed
+create csv/json file with the body data Eg- endpoint,email,password(Test Data folder)
+select the collection run -> Select the file and preview
+Then run data will be taken from the files
+-------------
+
+DATA DRIVEN TESTING
+data driven testing can be done by creating a csv/json file with the necessary coloumns (endpoint,enail,password)
+write the tests on tests tab (tests["Validate Email"] = responseBody.has(data.id);)
+and then assign the global varibales to the request body
+And then run the collection select the test data file and tick save response
+see the tests run and pass
+
+-----------
+RUNNING REMOTELY
+click on the colllection run -> share -. Get public link
+open cmd run 
+->newman run <link>
+	or
+log on to remote server , open cmd and run 
+->newman run <link>
+
+--------
+SOAP Req
+In soap req content type should be text/xml
+we can also include status code:200 test to test the response
+
+-----
+API Chaining req (calling a variable from one api to another)
+
+First we create 2 req type as one for get and put(update)
+In the put request we decalre env variable to any elemnt in the body that we want to get and update from the other api Eg - {{username1}} under a new environment
+Then we go to the first req (get) and in the test tab extract the value we want from the response body by the extension of chrome (json path finder) and get the path ('Michael' path =>.data[0].first_name)
+Then parse the value to test body and check from console command and parse the extracted value to the put req by following command 
+	bodyData=JSON.parse(responseBody)
+
+
+	value=bodyData.data[0].first_name
+
+
+	console.log(value)
+ --This is to test the value is taken correctly
+	pm.environment.set("username1", value);
+
+

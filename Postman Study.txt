@@ -1,0 +1,18 @@
+In postman get and post req were learned
+You can create collections -> then folders -> then req
+Variables can be declared in th edit section of collections.folders or requests and passed with following notation {{variable}}
+Global variables can be also decalred
+Environments can be set and variables can be declared to the req passing and also to the body
+Test logs can be created in Pre request tests and Tests section
+Console log shows the steps one by one when sending requests
+In built tests are available in the Test section
+In collection level theres Run where we can run the tests selecting the environment with no of repetitions as well
+
+All these tests can be run from cmd(newman is cmd runner for postman)
+For that -:
+1.Install node.js
+2.Install new man -> npm install -g newman
+3.Export the collection containg the request to a desired folders
+4.Open cmd and cd to the json file directory
+5.Run the comman to run tests -> newman run <jsonfile_name.json> or else the public link of the collection is also runnable ->newman run <public link>
+(Public link is availaable in Collection->Run->Share->Get public link)
